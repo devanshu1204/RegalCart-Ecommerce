@@ -1,9 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
+import connectDB from "./config/database.js";
+
+// loading env variables
+dotenv.config({ path: "backend/config/config.env" });
+
+// Connect to MongoDB
+connectDB();
 
 const app = express();
-
-dotenv.config({ path: "backend/config/config.env" });
 
 app.get("/", (req, res) => {
   res.status(200).json("Api is working");
