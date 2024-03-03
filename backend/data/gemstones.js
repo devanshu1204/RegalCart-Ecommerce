@@ -1,43 +1,43 @@
-const products = [
+const gemstones = [
   {
     id: "1",
     name: "blue sapphire",
     price: 100,
     weight: "1.00 ct.",
-    image: "/images/airpods.jpg",
     description: "Blue colour good looking sapphire",
     category: "Featured",
     cut: "oval",
     colour: "red",
     clarity: "Eye Clean",
     countInStock: 10,
+    image: "sapphire.jpg",
   },
   {
     id: "2",
     name: "red ruby",
     price: 200,
     weight: "1.50 ct.",
-    image: "/images/airpods.jpg",
     description: "red colour good looking ruby",
     category: "Featured",
     cut: "oval",
     colour: "red",
     clarity: "Eye Clean",
     countInStock: 5,
+    image: "sapphire.jpg",
   },
   {
     id: "3",
     name: "green emerald",
     price: 300,
     weight: "2.00 ct.",
-    image: "/images/airpods.jpg",
     description: "green colour good looking emerald",
     category: "Featured",
     cut: "oval",
     colour: "green",
     clarity: "Eye Clean",
     countInStock: 10,
+    image: "sapphire.jpg",
   },
 ];
 
-export default products;
+export default gemstones;
