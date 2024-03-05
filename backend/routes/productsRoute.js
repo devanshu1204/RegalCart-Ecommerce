@@ -13,6 +13,6 @@ router.route("/").get(getAllProducts);
 // Route for adding new Product
 router.route("/createProduct").post(createProduct);
 
-router.route("/updateProduct").put(updateProduct);
+router.route("/updateProduct/:id").put(updateProduct);
 
 module.exports = router;
