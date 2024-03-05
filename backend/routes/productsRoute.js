@@ -2,6 +2,7 @@ const express = require("express");
 const {
   getAllProducts,
   createProduct,
+  updateProduct,
 } = require("../controllers/productsController");
 
 const router = express.Router();
@@ -11,5 +12,7 @@ router.route("/").get(getAllProducts);
 
 // Route for adding new Product
 router.route("/createProduct").post(createProduct);
+
+router.route("/updateProduct").put(updateProduct);
 
 module.exports = router;
