@@ -11,6 +11,16 @@ app.get("/", (req, res) => {
   res.status(200).json("Api is working");
 });
 
-app.listen(process.env.PORT, () => {
+// listen to the server
+const server = app.listen(process.env.PORT, () => {
   console.log(`server is working on http://localhost:${process.env.PORT}`);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.log(`Error: ${err.message}`);
+  console.log(`Shutting dow the server due to unhandled Promise Rejection`);
+
+  server.close(() => {
+    process.exit(1);
+  });
 });
