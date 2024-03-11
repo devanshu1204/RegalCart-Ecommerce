@@ -6,11 +6,12 @@ const {
   deleteProduct,
   productDetails,
 } = require("../controllers/productsController");
+const { isAuthenticatedUser } = require("../middleware/auth");
 
 const router = express.Router();
 
 // Route for getting all Products
-router.route("/").get(getAllProducts);
+router.route("/").get(isAuthenticatedUser, getAllProducts);
 
 // Route for getting Product details
 router.route("/productDetails/:id").get(productDetails);
