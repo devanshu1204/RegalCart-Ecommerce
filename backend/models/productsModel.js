@@ -54,6 +54,11 @@ const productsSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Please enter number of products in stock"],
   },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "users",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
