@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
   resetPasswordExpire: Date,
 });
 
-// password hashing
+// password hashing  // mongoose middleware
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
