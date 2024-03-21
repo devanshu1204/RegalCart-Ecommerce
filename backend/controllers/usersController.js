@@ -2,6 +2,9 @@ const ErrorHander = require("../utils/errorhander");
 const catchAsyncError = require("../middleware/catchAsyncError");
 const users = require("../models/usersModel");
 const sendToken = require("../utils/jwtToken");
+const sendEmail = require("../utils/sendEmail");
+const crypto = require("crypto");
+const { findById } = require("../models/productsModel");
 // Register a User
 exports.register = catchAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -53,4 +56,41 @@ exports.logout = catchAsyncError(async (req, res, next) => {
     success: true,
     message: "Logged Out",
   });
+});
+
+// Forgot Password
+exports.forgotPassword = catchAsyncError(async (req, res, next) => {
+  const user = await users.findOne({ email: req.body.email });
+
+  if (!user) {
+    return next(new ErrorHander("User not found", 404));
+  }
+  // Get reset Password token
+  const resetToken = user.getResetPasswordToken();
+
+  await user.save({ validateBeforeSave: false });
+
+  const resetPasswordUrl = `http://localhost:5000/user/password/reset/${resetToken}`;
+
+  const message = `Your password reset link is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then please ignore it.`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: `Maedric Password Recovery`,
+      message: message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    });
+  } catch (error) {
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save({ validateBeforeSave: false });
+
+    return next(new ErrorHander(error.message, 500));
+  }
 });
