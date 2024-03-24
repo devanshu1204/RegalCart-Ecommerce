@@ -139,3 +139,6 @@ exports.userProfile = catchAsyncError(async (req, res, next) => {
     user,
   });
 });
+
+// Display all User -- Admin
+exports.getallUsers = catchAsyncError(async (req, res, next) => {});
