@@ -4,12 +4,8 @@ const ConnectDB = require("./config/database");
 // Bringing env variables
 dotenv.config({ path: "backend/config/config.env" });
 
-// Connect to MongoDB
+// Connecting to MongoDB DataBase
 ConnectDB();
-
-app.get("/", (req, res) => {
-  res.status(200).json("Api is working");
-});
 
 // listen to the server
 const server = app.listen(process.env.PORT, () => {

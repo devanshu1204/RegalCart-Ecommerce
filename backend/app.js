@@ -9,10 +9,11 @@ app.use(cookieParser());
 // Route Imports
 const product_route = require("./routes/productsRoute");
 const user_route = require("./routes/usersRoute");
+const order_route = require("./routes/ordersRoute");
 // this middleware will handle all the operations on products
 app.use("/products", product_route);
 app.use("/user", user_route);
-
+app.use("/order", order_route);
 // Middleware for Errors
 app.use(errorMiddleware);
 
