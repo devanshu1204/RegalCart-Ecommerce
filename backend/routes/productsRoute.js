@@ -13,6 +13,9 @@ const router = express.Router();
 // Route for getting all Products
 router.route("/").get(getAllProducts);
 
+// Route for Gemstones
+router.route("/?section=Gemstones").get(getAllProducts);
+
 // Route for getting Product details
 router.route("/productDetails/:id").get(productDetails);
 
