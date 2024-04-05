@@ -16,6 +16,9 @@ router.route("/").get(getAllProducts);
 // Route for Gemstones
 router.route("/?section=Gemstones").get(getAllProducts);
 
+// Route for Jewellery
+router.route("/?section=Jewellery").get(getAllProducts);
+
 // Route for getting Product details
 router.route("/productDetails/:id").get(productDetails);
 
