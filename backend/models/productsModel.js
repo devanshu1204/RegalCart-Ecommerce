@@ -26,7 +26,7 @@ const productsSchema = new mongoose.Schema({
   image: [
     {
       type: String,
-      required: [true, "Please upload product images"],
+      required: false,
     },
   ],
   description: {
@@ -34,6 +34,7 @@ const productsSchema = new mongoose.Schema({
     required: [true, "Please enter product description"],
   },
   // gemstones category will include featured, sapphire, emerald , ruby
+  // jewellery category will include featured, rings, bangles, necklace, pendants
   category: {
     type: String,
     required: false,

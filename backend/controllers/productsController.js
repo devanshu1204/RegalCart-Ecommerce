@@ -2,11 +2,41 @@ const products = require("../models/productsModel");
 const ErrorHander = require("../utils/errorhander");
 const catchAsyncError = require("../middleware/catchAsyncError");
 const ApiFeatures = require("../utils/apifeatures");
+const upload = require("../middleware/multerMiddleware");
 
 // Create New Product --Admin
 exports.createProduct = catchAsyncError(async (req, res, next) => {
   req.body.user = req.user.id;
-  const product = await products.create(req.body);
+  const {
+    section,
+    id,
+    name,
+    price,
+    weight,
+    image,
+    description,
+    category,
+    cut,
+    colour,
+    clarity,
+    countInStock,
+  } = req.body;
+
+  const product = await products.create({
+    section,
+    id,
+    name,
+    price,
+    weight,
+    image,
+    description,
+    category,
+    cut,
+    colour,
+    clarity,
+    countInStock,
+    user: req.user.id,
+  });
 
   res.status(201).json({
     success: true,
