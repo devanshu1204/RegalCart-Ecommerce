@@ -13,7 +13,6 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
     name,
     price,
     weight,
-    image,
     description,
     category,
     cut,
@@ -21,6 +20,8 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
     clarity,
     countInStock,
   } = req.body;
+
+  const image = req.files.map((file) => file.path);
 
   const product = await products.create({
     section,
@@ -43,6 +44,8 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
     product,
   });
 });
+// Uploading images
+exports.uploadImages = upload.array("image");
 
 // Get all products
 exports.getAllProducts = catchAsyncError(async (req, res) => {
