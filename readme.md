@@ -1,1 +1,1 @@
-<h1>Maedric Backend</h1>
+<h1>E-commerce Backend</h1>
